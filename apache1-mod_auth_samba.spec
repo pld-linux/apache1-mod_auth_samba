@@ -1,10 +1,10 @@
 %define		mod_name	auth_samba
-%define 	apxs	/usr/sbin/apxs
+%define 	apxs	/usr/sbin/apxs1
 Summary:	This is the samba authentication module for Apache
 Summary(pl):	Modu³ uwierzytelnienia samba dla Apache
-Name:		apache-mod_%{mod_name}
+Name:		apache1-mod_%{mod_name}
 Version:	1.1
-Release:	6
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		Networking/Daemons
@@ -13,13 +13,14 @@ Source0:	http://dl.sourceforge.net/modauthsamba/mod_%{mod_name}-%{version}.tar.g
 Patch0:		%{name}-symbol_fix.patch
 URL:		http://modauthsamba.sourceforge.net/
 BuildRequires:	%{apxs}
-BuildRequires:	apache(EAPI)-devel
+BuildRequires:	apache1-devel
 BuildRequires:	gdbm-devel
 BuildRequires:	pam-devel
 BuildRequires:	pam-pam_smb
 Requires(post,preun):	%{apxs}
-Requires:	apache(EAPI)
+Requires:	apache1
 Requires:	pam-pam_smb
+Obsoletes:	apache-mod_%{mod_name} <= %{epoch}:%{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_pkglibdir	%(%{apxs} -q LIBEXECDIR)
@@ -51,15 +52,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 %{apxs} -e -a -n %{mod_name} %{_pkglibdir}/mod_%{mod_name}.so 1>&2
-if [ -f /var/lock/subsys/httpd ]; then
-	/etc/rc.d/init.d/httpd restart 1>&2
+if [ -f /var/lock/subsys/apache ]; then
+	/etc/rc.d/init.d/apache restart 1>&2
 fi
 
 %preun
 if [ "$1" = "0" ]; then
 	%{apxs} -e -A -n %{mod_name} %{_pkglibdir}/mod_%{mod_name}.so 1>&2
-	if [ -f /var/lock/subsys/httpd ]; then
-		/etc/rc.d/init.d/httpd restart 1>&2
+	if [ -f /var/lock/subsys/apache ]; then
+		/etc/rc.d/init.d/apache restart 1>&2
 	fi
 fi
 
