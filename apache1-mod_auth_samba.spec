@@ -3,7 +3,7 @@ Summary:	This is the samba authentication module for Apache
 Summary(pl):	Modu³ autentykacji samba dla Apache
 Name:		apache-mod_%{mod_name}
 Version:	1.1
-Release:	2
+Release:	3
 License:	GPL
 Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
@@ -63,4 +63,5 @@ fi
 
 %files
 %defattr(644,root,root,755)
+%doc *.html
 %attr(755,root,root) %{_pkglibdir}/*
