@@ -17,8 +17,8 @@ BuildRequires:	gdbm-devel
 BuildRequires:	pam-devel
 BuildRequires:	pam_smb
 Prereq:		%{_sbindir}/apxs
-Requires:	pam_smb
 Requires:	apache(EAPI)
+Requires:	pam_smb
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_pkglibdir	%(%{apxs} -q LIBEXECDIR)
