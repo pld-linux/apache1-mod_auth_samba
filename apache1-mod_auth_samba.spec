@@ -7,7 +7,7 @@ Version:	1.1
 Release:	5
 License:	GPL
 Group:		Networking/Daemons
-Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/modauthsamba/mod_%{mod_name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/modauthsamba/mod_%{mod_name}-%{version}.tar.gz
 Patch0:		%{name}-symbol_fix.patch
 URL:		http://modauthsamba.sourceforge.net/
 BuildRequires:	%{apxs}
