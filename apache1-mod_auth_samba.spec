@@ -8,6 +8,7 @@ Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
 Group(pl):	Sieciowe/Serwery
 Source0:	ftp://download.sourceforge.net/pub/sourceforge/modauthsamba/mod_%{mod_name}-%{version}.tar.gz
+Patch0:		%{name}-symbol_fix.patch
 BuildRequires:	/usr/sbin/apxs
 BuildRequires:	apache(EAPI)-devel
 Prereq:		/usr/sbin/apxs
@@ -23,6 +24,7 @@ authenticate HTTP clients using user entries in an samba directory.
 
 %prep 
 %setup -q -n mod_%{mod_name}
+%patch0 -p1
 
 %build
 /usr/sbin/apxs -c mod_%{mod_name}.c -o mod_%{mod_name}.so
