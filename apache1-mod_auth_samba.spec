@@ -4,7 +4,7 @@ Summary:	This is the samba authentication module for Apache
 Summary(pl):	Modu³ autentykacji samba dla Apache
 Name:		apache-mod_%{mod_name}
 Version:	1.1
-Release:	5
+Release:	6
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://dl.sourceforge.net/modauthsamba/mod_%{mod_name}-%{version}.tar.gz
@@ -15,10 +15,10 @@ BuildRequires:	%{apxs}
 BuildRequires:	apache(EAPI)-devel
 BuildRequires:	gdbm-devel
 BuildRequires:	pam-devel
-BuildRequires:	pam_smb
+BuildRequires:	pam-pam_smb
 Requires(post,preun):	%{apxs}
 Requires:	apache(EAPI)
-Requires:	pam_smb
+Requires:	pam-pam_smb
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_pkglibdir	%(%{apxs} -q LIBEXECDIR)
