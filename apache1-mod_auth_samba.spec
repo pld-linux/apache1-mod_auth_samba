@@ -3,18 +3,22 @@ Summary:	This is the samba authentication module for Apache
 Summary(pl):	Modu³ autentykacji samba dla Apache
 Name:		apache-mod_%{mod_name}
 Version:	1.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
 Group(pl):	Sieciowe/Serwery
 Source0:	ftp://download.sourceforge.net/pub/sourceforge/modauthsamba/mod_%{mod_name}-%{version}.tar.gz
 Patch0:		%{name}-symbol_fix.patch
+URL:		http://modauthsamba.sourceforge.net/
 BuildRequires:	/usr/sbin/apxs
 BuildRequires:	apache(EAPI)-devel
+BuildRequires:	gdbm-devel
+BuildRequires:	pam-devel
+BuildRequires:	pam_smb
 Prereq:		/usr/sbin/apxs
+Prereq:		pam_smb
 Requires:	apache(EAPI)
-URL:		http://modauthsamba.sourceforge.net/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_pkglibdir	%(/usr/sbin/apxs -q LIBEXECDIR)
@@ -32,13 +36,16 @@ klientów HTTP z u¿yciem wpisów w katalogu samby.
 %patch0 -p1
 
 %build
-/usr/sbin/apxs -c mod_%{mod_name}.c -o mod_%{mod_name}.so
+/usr/sbin/apxs -c mod_%{mod_name}.c -o mod_%{mod_name}.so -lgdbm -lcrypt -lpam /lib/security/pam_smb_auth.so
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_pkglibdir}
 
 install mod_%{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}
+
+%clean
+rm -rf $RPM_BUILD_ROOT
 
 %post
 /usr/sbin/apxs -e -a -n %{mod_name} %{_pkglibdir}/mod_%{mod_name}.so 1>&2
@@ -53,9 +60,6 @@ if [ "$1" = "0" ]; then
 		/etc/rc.d/init.d/httpd restart 1>&2
 	fi
 fi
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
