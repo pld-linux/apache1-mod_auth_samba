@@ -37,7 +37,8 @@ uwierzytelnianie klientów HTTP z u¿yciem wpisów w katalogu samby.
 %patch0 -p1
 
 %build
-%{apxs} -c mod_%{mod_name}.c -o mod_%{mod_name}.so -lgdbm -lcrypt -lpam /lib/security/pam_smb_auth.so
+%{apxs} -c mod_%{mod_name}.c -o mod_%{mod_name}.so \
+	-lgdbm -lcrypt -lpam /%{_lib}/security/pam_smb_auth.so
 
 %install
 rm -rf $RPM_BUILD_ROOT
