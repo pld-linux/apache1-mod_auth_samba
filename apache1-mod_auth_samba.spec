@@ -1,17 +1,18 @@
 %define		mod_name	auth_samba
-Summary:        This is the samba authentication module for Apache
+Summary:	This is the samba authentication module for Apache
 Name:		apache-mod_%{mod_name}
 Version:	1.1
 Release:	1
 License:	GPL
 Group:		Networking/Daemons
+Group(de):	Netzwerkwesen/Server
 Group(pl):	Sieciowe/Serwery
-Source0:        ftp://download.sourceforge.net/pub/sourceforge/modauthsamba/mod_%{mod_name}-%{version}.tar.gz
+Source0:	ftp://download.sourceforge.net/pub/sourceforge/modauthsamba/mod_%{mod_name}-%{version}.tar.gz
 BuildRequires:	/usr/sbin/apxs
 BuildRequires:	apache(EAPI)-devel
 Prereq:		/usr/sbin/apxs
 Requires:	apache(EAPI)
-URL:            http://modauthsamba.sourceforge.net/
+URL:		http://modauthsamba.sourceforge.net/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_pkglibdir	%(/usr/sbin/apxs -q LIBEXECDIR)
@@ -28,17 +29,14 @@ authenticate HTTP clients using user entries in an samba directory.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT%{_pkglibdir}
 
 install mod_%{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}
 
-strip --strip-unneeded $RPM_BUILD_ROOT%{_pkglibdir}/* 
-
 %post
-%{_sbindir}/apxs -e -a -n %{mod_name} %{_pkglibdir}/mod_%{mod_name}.so 1>&2
+/usr/sbin/apxs -e -a -n %{mod_name} %{_pkglibdir}/mod_%{mod_name}.so 1>&2
 if [ -f /var/lock/subsys/httpd ]; then
-	%{_sysconfdir}/rc.d/init.d/httpd restart 1>&2
+	/etc/rc.d/init.d/httpd restart 1>&2
 fi
 
 %preun
