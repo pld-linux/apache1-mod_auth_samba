@@ -16,7 +16,7 @@ BuildRequires:	apache(EAPI)-devel
 BuildRequires:	gdbm-devel
 BuildRequires:	pam-devel
 BuildRequires:	pam_smb
-Prereq:		%{_sbindir}/apxs
+Requires(post,preun):	%{apxs}
 Requires:	apache(EAPI)
 Requires:	pam_smb
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
