@@ -5,6 +5,7 @@ Summary(pl):	Modu³ autentykacji samba dla Apache
 Name:		apache-mod_%{mod_name}
 Version:	1.1
 Release:	6
+Epoch:		1
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://dl.sourceforge.net/modauthsamba/mod_%{mod_name}-%{version}.tar.gz
