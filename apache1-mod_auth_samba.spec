@@ -30,7 +30,7 @@ authenticate HTTP clients using user entries in an samba directory.
 To jest modu³ autentykacji dla Apache pozwalaj±cy na autentykacjê
 klientów HTTP z u¿yciem wpisów w katalogu samby.
 
-%prep 
+%prep
 %setup -q -n mod_%{mod_name}
 %patch0 -p1
 
