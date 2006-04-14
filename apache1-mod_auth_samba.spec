@@ -23,7 +23,7 @@ BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(triggerpostun):	%{apxs}
 Requires:	apache1 >= 1.3.33-2
 Requires:	pam-pam_smb
-Obsoletes:	apache-mod_auth_samba <= %{epoch}:%{version}
+Obsoletes:	apache-mod_auth_samba <= 1:1.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_pkglibdir	%(%{apxs} -q LIBEXECDIR 2>/dev/null)
