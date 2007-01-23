@@ -6,7 +6,7 @@ Summary:	This is the samba authentication module for Apache
 Summary(pl):	Modu³ uwierzytelnienia samba dla Apache
 Name:		apache1-mod_%{mod_name}
 Version:	1.1
-Release:	3
+Release:	4
 Epoch:		1
 License:	GPL
 Group:		Networking/Daemons
@@ -21,7 +21,7 @@ BuildRequires:	pam-devel
 BuildRequires:	pam-pam_smb
 BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(triggerpostun):	%{apxs}
-Requires:	apache1 >= 1.3.33-2
+Requires:	apache1(EAPI)
 Requires:	pam-pam_smb
 Obsoletes:	apache-mod_auth_samba <= 1:1.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
