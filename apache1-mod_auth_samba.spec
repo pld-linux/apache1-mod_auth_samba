@@ -3,7 +3,7 @@
 %define		mod_name	auth_samba
 %define 	apxs	/usr/sbin/apxs1
 Summary:	This is the samba authentication module for Apache
-Summary(pl.UTF-8):   Moduł uwierzytelnienia samba dla Apache
+Summary(pl.UTF-8):	Moduł uwierzytelnienia samba dla Apache
 Name:		apache1-mod_%{mod_name}
 Version:	1.1
 Release:	4
