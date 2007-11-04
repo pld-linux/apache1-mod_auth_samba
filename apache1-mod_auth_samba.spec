@@ -14,8 +14,7 @@ Source0:	http://dl.sourceforge.net/modauthsamba/mod_%{mod_name}-%{version}.tar.g
 # Source0-md5:	9478a055e5cedd8c00beaed83d324240
 Patch0:		%{name}-symbol_fix.patch
 URL:		http://modauthsamba.sourceforge.net/
-BuildRequires:	apache1-apxs
-BuildRequires:	apache1-devel >= 1.3.33-2
+BuildRequires:	apache1-devel >= 1.3.39
 BuildRequires:	gdbm-devel
 BuildRequires:	pam-devel
 BuildRequires:	pam-pam_smb
